@@ -9,26 +9,33 @@
  *  
  */
 public class Fila
-{
+{   
+    //Atributos
+    //Variables
     private String id;
     private Fecha fecha;
     private double ingresos;
     private double gastos;
-
+    //Constantes
+    //Métodos
     /**
      * Constructor  
      */
     public Fila(String id)    {
-         
-
+         this.ingresos = 0;
+         this.gastos = 0;
+         this.id = id;
+         this.fecha = new Fecha(1,1,2000);
     }
 
     /**
      * Constructor  
      */
     public Fila(String id, Fecha fecha, double ingresos, double gastos)    {
-        
-
+        this.id = id;
+        this.fecha = fecha;
+        this.ingresos = ingresos;
+        this.gastos = gastos;
     }
     
     /**
@@ -78,8 +85,9 @@ public class Fila
      * 
      */
     public Fila duplicar() {
-       return null;
 
+       return new Fila(id, fecha, ingresos, gastos);
+       
     }
 
     /**
@@ -87,10 +95,14 @@ public class Fila
      * (leer enunciado)
      */
     public String toString() {
-      return null;
-
+      String fila = id;
+      Fecha dia = fecha;
+      double ingresar = ingresos;
+      double gastar = gastos;
+      double beneficio = ingresos - gastos;
+      String patron = ("%8s %15s %15.2f %15.2f %15.2f");
+      String resultado = String.format(patron,fila,dia,ingresar,gastar,beneficio);
+      return resultado;
     }
-
-     
 
 }
