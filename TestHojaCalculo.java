@@ -12,7 +12,7 @@ public class TestHojaCalculo
      * Constructor  
      */
     public TestHojaCalculo()    {
-
+        
     }
 
     /**
@@ -23,7 +23,6 @@ public class TestHojaCalculo
      * de fila (el que no tiene parámetros)
      */
     public void test1() {
-           
 
         
 
