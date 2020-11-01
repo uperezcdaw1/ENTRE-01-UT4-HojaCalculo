@@ -100,8 +100,9 @@ public class Fila
       double ingresar = ingresos;
       double gastar = gastos;
       double beneficio = ingresos - gastos;
-      String patron = ("%8s %15s %15.2f %15.2f %15.2f");
-      String resultado = String.format(patron,fila,dia,ingresar,gastar,beneficio);
+      String dinero = "€";
+      String patron = ("%8s %15s %15.2f%s %15.2f%s %15.2f%s");
+      String resultado = String.format(patron,fila,dia,ingresar,dinero,gastar,dinero,beneficio,dinero);
       System.out.println(resultado);
       return " ";
     }

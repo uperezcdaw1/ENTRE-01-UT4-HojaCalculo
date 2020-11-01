@@ -176,15 +176,37 @@ public class HojaCalculo
      * con el formato exacto que indica el enunciado
      */
     public String toString() {
+        if(getNumeroFilas() > 3){
+            System.out.println("No se puede añadir fila4 a la hoja" + getNombre());
+        }
+        
+        //Variables para la suma de ingresos, gastos y beneficios
         double beneficiosTotal = getBeneficio();
         double ingresosTotal = getTotalIngresos();
         double gastosTotal = getTotalGastos();
-        String patron = ("%38.2f %15.2f %15.2f");
-        String resultado = String.format(patron, ingresosTotal, gastosTotal, beneficiosTotal);
-        return fila1.toString() + "\n" + fila2.toString() + "\n" + fila3.toString()
-        + "\n------------------------------------------------------------------"
-        + resultado;
-
+        String dinero = "€";
+        String patron = ("%40.2f%s %16.2f%s %17.2f%s");
+        String resultado = String.format(patron, ingresosTotal, dinero, gastosTotal, dinero, beneficiosTotal, dinero);
+        
+        if(getNumeroFilas() == 1){  
+            System.out.println(nombre + "\n");
+            System.out.println(fila1.toString() 
+                + "\n-----------------------------------------------------------------------"
+                + "\n" + resultado);
+            }
+        if(getNumeroFilas() == 2){
+            System.out.println(nombre + "\n");
+            System.out.println(fila1.toString() + "\n" + fila2.toString() 
+                + "\n-----------------------------------------------------------------------"
+                + "\n" + resultado);
+            }
+        if(getNumeroFilas() == 3){
+            System.out.println(nombre + "\n");
+            System.out.println(fila1.toString() + "\n" + fila2.toString() + "\n" + fila3.toString()
+                + "\n-----------------------------------------------------------------------"
+                + "\n" + resultado);
+        }
+        return "";
     }
 
     /**
@@ -193,7 +215,20 @@ public class HojaCalculo
      * Al duplicar la hoja se duplicarán también las filas que contenga
      */
     public HojaCalculo duplicarHoja() {
-        return new HojaCalculo(nombre);
+        HojaCalculo hojaDuplicada = new HojaCalculo("Duplicada");
+        if(getNumeroFilas() == 1){
+            Fila duplicadaFila1 = fila1.duplicar();
+            hojaDuplicada.addFila(duplicadaFila1);
+        }
+        if(getNumeroFilas() == 2){
+            Fila duplicadaFila2 = fila2.duplicar();
+            hojaDuplicada.addFila(duplicadaFila2);
+        }
+        if(getNumeroFilas() == 3){
+            Fila duplicadaFila3 = fila3.duplicar();
+            hojaDuplicada.addFila(duplicadaFila3);
+        }
+        return hojaDuplicada;
     }
 
 }
