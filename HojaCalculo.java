@@ -10,11 +10,14 @@
  */
 public class HojaCalculo
 {
+    //Atributos
+    //Variables
     private String nombre;
     private Fila fila1;
     private Fila fila2;
     private Fila fila3;
-
+    //Constantes
+    //Metodos
     /**
      * Constructor  
      * Crea la hoja de cálculo con el nombre indicado 
@@ -101,11 +104,11 @@ public class HojaCalculo
         if(hojaCompleta() == true){
             System.out.println("No puedes añadir más filas, la hoja está completa");
         } else if (this.fila1 == null){
-            fila1 = new Fila("fila1");
+            fila1 = fila;
         } else if (this.fila2 == null){
-            fila2 = new Fila("fila2");
+            fila2 = fila;
         } else if (this.fila3 == null){
-            fila3 = new Fila("fila3");
+            fila3 = fila;
         }
 
     }
@@ -176,36 +179,80 @@ public class HojaCalculo
      * con el formato exacto que indica el enunciado
      */
     public String toString() {
-        if(getNumeroFilas() > 3){
-            System.out.println("No se puede añadir fila4 a la hoja" + getNombre());
-        }
-        
         //Variables para la suma de ingresos, gastos y beneficios
         double beneficiosTotal = getBeneficio();
         double ingresosTotal = getTotalIngresos();
         double gastosTotal = getTotalGastos();
         String dinero = "€";
-        String patron = ("%40.2f%s %16.2f%s %17.2f%s");
+        String patron = ("%40.2f%s %15.2f%s %15.2f%s");
         String resultado = String.format(patron, ingresosTotal, dinero, gastosTotal, dinero, beneficiosTotal, dinero);
-        
-        if(getNumeroFilas() == 1){  
-            System.out.println(nombre + "\n");
-            System.out.println(fila1.toString() 
-                + "\n-----------------------------------------------------------------------"
-                + "\n" + resultado);
+        String patron3 = ("%24s %16s %16s %16s");
+        String fecha = "FECHA";
+        String ingresos = "INGRESOS";
+        String gastos = "GASTOS" ; 
+        String beneficios = "BENEFICIOS" ; 
+        String resultado3 = String.format(patron3, fecha, ingresos, gastos, beneficios);
+        //EN CASO DE QUE EL BENEFICIO TOTAL SEA MAYOR O IGUAL QUE 0
+        if(getBeneficio() >= 0){
+            if(hojaCompleta() == true){
+                System.out.println("No se puede añadir fila4 a " + getNombre() + "\n");
             }
-        if(getNumeroFilas() == 2){
-            System.out.println(nombre + "\n");
-            System.out.println(fila1.toString() + "\n" + fila2.toString() 
-                + "\n-----------------------------------------------------------------------"
-                + "\n" + resultado);
+            if(getNumeroFilas() == 1){ 
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() 
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado);
             }
-        if(getNumeroFilas() == 3){
-            System.out.println(nombre + "\n");
-            System.out.println(fila1.toString() + "\n" + fila2.toString() + "\n" + fila3.toString()
-                + "\n-----------------------------------------------------------------------"
-                + "\n" + resultado);
+            if(getNumeroFilas() == 2){
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() + "\n" + fila2.toString() 
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado);
+            }
+            if(getNumeroFilas() == 3){
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() + "\n" + fila2.toString() + "\n" + fila3.toString()
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado);
+            }
         }
+
+        // EN CASO DE QUE EL BENEFICIO TOTAL SEA MENOR QUE 0
+        String negativo = " **";
+        String patron2 = ("%40.2f%s %15.2f%s %15.2f%s%s");
+        String resultado2 = String.format(patron2, ingresosTotal, dinero, gastosTotal, dinero, beneficiosTotal, dinero, negativo);
+        if(getBeneficio() < 0){
+            if(hojaCompleta() == true){
+                System.out.println("No se puede añadir fila4 a " + getNombre() + "\n");
+            }
+            if(getNumeroFilas() == 1){  
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() 
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado2);
+            }
+            if(getNumeroFilas() == 2){
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() + "\n" 
+                    + fila2.toString() 
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado2);
+            }
+            if(getNumeroFilas() == 3){
+                System.out.println(nombre + "\n");
+                System.out.println(resultado3);
+                System.out.println(fila1.toString() + "\n" 
+                    + fila2.toString() + "\n" + fila3.toString()
+                    + "\n-----------------------------------------------------------------------"
+                    + "\n" + resultado2);
+            }
+        }
+
         return "";
     }
 
@@ -216,17 +263,23 @@ public class HojaCalculo
      */
     public HojaCalculo duplicarHoja() {
         HojaCalculo hojaDuplicada = new HojaCalculo("Duplicada");
+        if(getNumeroFilas() == 3){
+            Fila duplicadaFila1 = fila1.duplicar();
+            Fila duplicadaFila2 = fila2.duplicar();
+            Fila duplicadaFila3 = fila3.duplicar();
+            hojaDuplicada.addFila(duplicadaFila1);
+            hojaDuplicada.addFila(duplicadaFila2);
+            hojaDuplicada.addFila(duplicadaFila3);
+        }
+        if(getNumeroFilas() == 2){
+            Fila duplicadaFila1 = fila1.duplicar();
+            Fila duplicadaFila2 = fila2.duplicar();
+            hojaDuplicada.addFila(duplicadaFila1);
+            hojaDuplicada.addFila(duplicadaFila2);
+        }
         if(getNumeroFilas() == 1){
             Fila duplicadaFila1 = fila1.duplicar();
             hojaDuplicada.addFila(duplicadaFila1);
-        }
-        if(getNumeroFilas() == 2){
-            Fila duplicadaFila2 = fila2.duplicar();
-            hojaDuplicada.addFila(duplicadaFila2);
-        }
-        if(getNumeroFilas() == 3){
-            Fila duplicadaFila3 = fila3.duplicar();
-            hojaDuplicada.addFila(duplicadaFila3);
         }
         return hojaDuplicada;
     }

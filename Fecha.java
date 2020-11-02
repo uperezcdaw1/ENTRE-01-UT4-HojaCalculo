@@ -6,10 +6,13 @@
  */
 public class Fecha
 {
+    //Atributos
+    //Variables
     private int dia;
     private int mes;
     private int año;
-
+    //Constantes
+    //Metodos
     /**
      * constructor  
      */

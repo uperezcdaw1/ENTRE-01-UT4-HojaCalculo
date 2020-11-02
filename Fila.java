@@ -22,10 +22,10 @@ public class Fila
      * Constructor  
      */
     public Fila(String id)    {
-         this.ingresos = 0;
-         this.gastos = 0;
-         this.id = id;
-         this.fecha = new Fecha(1,1,2000);
+        this.ingresos = 0;
+        this.gastos = 0;
+        this.id = id;
+        this.fecha = new Fecha(1,1,2000);
     }
 
     /**
@@ -38,6 +38,7 @@ public class Fila
         this.gastos = gastos;
     }
     
+    /*Getters*/
     /**
      * accesor para el id de la fila
      */
@@ -45,7 +46,6 @@ public class Fila
         return this.id;
 
     }
-
 
     /**
      * accesor para la fecha
@@ -79,6 +79,7 @@ public class Fila
 
     }
     
+    /*Duplicar la fila*/
     /**
      * obtiene una copia idéntica a la fila actual.
      * La fecha que incluye la fila duplicada también es una copia
@@ -86,26 +87,33 @@ public class Fila
      */
     public Fila duplicar() {
 
-       return new Fila(id, fecha, ingresos, gastos);
-       
-    }
+        return new Fila(id, fecha, ingresos, gastos);
 
+    }
+    
+    /*String de la fila*/
     /**
      * Representación textual de una fila
      * (leer enunciado)
      */
     public String toString() {
-      String fila = id;
-      Fecha dia = fecha;
-      double ingresar = ingresos;
-      double gastar = gastos;
-      double beneficio = ingresos - gastos;
-      String dinero = "€";
-      String patron = ("%8s %15s %15.2f%s %15.2f%s %15.2f%s");
-      String resultado = String.format(patron,fila,dia,ingresar,dinero,gastar,dinero,beneficio,dinero);
-      System.out.println(resultado);
-      return " ";
+        String fila = id;
+        Fecha dia = fecha;
+        double ingresar = ingresos;
+        double gastar = gastos;
+        double beneficio = ingresos - gastos;
+        String dinero = "€";
+        String negativo = " **";
+        if(getBeneficio() < 0){
+            String patron = ("%8s %15s %15.2f%s %15.2f%s %15.2f%s%s");
+            String resultado = String.format(patron,fila,dia,ingresar,dinero,gastar,dinero,beneficio,dinero,negativo);
+            System.out.println(resultado);
+        } else {
+            String patron2 = ("%8s %15s %15.2f%s %15.2f%s %15.2f%s");
+            String resultado2 = String.format(patron2,fila,dia,ingresar,dinero,gastar,dinero,beneficio,dinero);
+            System.out.println(resultado2);
+        }
+        return "";
     }
-    
 
 }
