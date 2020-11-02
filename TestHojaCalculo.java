@@ -8,17 +8,11 @@
 public class TestHojaCalculo
 {
     /*Si no funciona esta clase, te he pasado al correo el trabajo y también
-     lo tienes subido al moodle*/
+    lo tienes subido al moodle*/
     //Atributos
     //Variables
     //Constantes
     //Metodos
-    /**
-     * Constructor  
-     */
-    public TestHojaCalculo()    {
-
-    }
 
     /**
      * Define y crea todos los objetos necesarios para obtener
@@ -28,7 +22,7 @@ public class TestHojaCalculo
      * de fila (el que no tiene parámetros)
      */
     public void test1() {
-        
+
         HojaCalculo Hoja1 = new HojaCalculo("HOJA1");
         Fecha fecha1 = new Fecha(4,10,2020);
         Fecha fecha2 = new Fecha(5,10,2020);
@@ -49,6 +43,7 @@ public class TestHojaCalculo
      *  
      */
     public void test2() {
+
         HojaCalculo Hoja2 = new HojaCalculo("HOJA2");
         Fecha fecha1 = new Fecha(7,10,2020);
         Fecha fecha2 = new Fecha(8,10,2020);
@@ -67,6 +62,7 @@ public class TestHojaCalculo
      *  
      */
     public void test3() {
+
         HojaCalculo Hoja3 = new HojaCalculo("HOJA3");
         Fecha fecha1 = new Fecha(8,10,2020);
         Hoja3.addFila("Fila1",fecha1,670,234);
