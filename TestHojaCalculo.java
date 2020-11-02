@@ -7,6 +7,8 @@
  */
 public class TestHojaCalculo
 {
+    /*Si no funciona esta clase, te he pasado al correo el trabajo y también
+     lo tienes subido al moodle*/
     //Atributos
     //Variables
     //Constantes
